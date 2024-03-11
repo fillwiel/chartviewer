@@ -1,7 +1,12 @@
-# Getting Started with Create React App
+# Chart Viewer App
+Application renders Atlas Chart with added filters.
+Available filter fields are taken from MongoDB itself via another service.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Prerequisites
+URL to filter fields service must be specified in environment variable
+'REACT_APP_CHART_DATA_URI'
 ## Available Scripts
 
 In the project directory, you can run:

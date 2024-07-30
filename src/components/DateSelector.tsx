@@ -4,9 +4,9 @@ import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {DatePicker} from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Stack from "@mui/material/Stack";
 
 export function DateSelector(props: {
     updateDateFilter: (dateFilter: any) => void
@@ -73,7 +73,7 @@ export function DateSelector(props: {
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Stack direction="row" spacing={1} sx={{pl: 2, pt: 2}}>
+            <Stack direction="row" spacing={1} sx={{pt: 1}}>
                 <DatePicker sx={{width: 200}} value={startDate} onChange={handleStartDateChange}
                             label="Flight From"
                             format="DD/MM/YYYY" slotProps={{textField: {size: 'small'}}}/>

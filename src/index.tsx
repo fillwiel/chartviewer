@@ -1,9 +1,10 @@
 import React from 'react';
-import {createRoot} from 'react-dom/client';
+import {createRoot, Root} from 'react-dom/client';
 import './index.css';
 import App from './App';
+import {register} from "./notification/serviceWorker";
 
-const root = createRoot(
+const root : Root = createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
@@ -11,3 +12,4 @@ root.render(
       <App/>
   </React.StrictMode>
 );
+register();

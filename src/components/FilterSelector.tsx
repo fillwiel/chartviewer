@@ -10,9 +10,10 @@ import {ClearFilterComponent} from "./ClearFilterComponent";
 export function FilterSelector(props: {
     filterLabel: string,
     filterName: string,
-    filterValues: any[],
-    onChange: (event) => void,
-    onRemoveFilter: (filterName) => void
+    filterValues: string[],
+    onChange: (event: any) => void,
+    onRemoveFilter: (filterName: string) => void,
+    required?: boolean
 }) {
     const [selectedValue, setSelectedValue] = React.useState('');
     const handleChange = (event: SelectChangeEvent) => {
@@ -22,7 +23,7 @@ export function FilterSelector(props: {
         selectedValue !== "" && setSelectedValue("");
     };
     return (
-        <FormControl size="small">
+        <FormControl size="small" required={props.required}>
             <Stack direction="row">
                 <InputLabel id={props.filterName}>{props.filterLabel}</InputLabel>
                 <Select autoWidth
@@ -49,5 +50,4 @@ export function FilterSelector(props: {
             </Stack>
         </FormControl>
     );
-
 }

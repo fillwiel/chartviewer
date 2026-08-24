@@ -1,7 +1,7 @@
 FROM node:18-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --no-audit --no-fund
+RUN if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; else npm install --no-audit --no-fund; fi
 COPY . .
 ARG REACT_APP_CHART_DATA_URI=http://chart-fields.local
 ENV REACT_APP_CHART_DATA_URI=$REACT_APP_CHART_DATA_URI

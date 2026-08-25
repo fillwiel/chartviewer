@@ -5,10 +5,7 @@ import {DataProvider} from './DataContext';
 import ChartFilter from "./components/ChartFilter";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {DateSelector} from "./components/DateSelector";
-import NotificationHandler from "./notification/NotificationHandler";
 import {Paper, Typography} from "@mui/material";
-import SubscriptionManager from "./components/SubscriptionManager";
-import {setupFirebaseToken} from "./firebase";
 
 const defaultTheme = createTheme();
 
@@ -26,23 +23,11 @@ function App() {
     const [locationFilter, setLocationFilter] = useState({});
     const [dateFilter, setDateFilter] = useState({});
     const chartFilter = useChartFilter(locationFilter, dateFilter);
-    const [token, setToken] = useState<string>('');
-    useEffect(() => {
-        const fetchToken = async () => {
-            const receivedToken = await setupFirebaseToken();
-            if (receivedToken) {
-                setToken(receivedToken);
-            } else {
-                console.error('Error getting token');
-            }
-        };
-        fetchToken();
-    }, []);
 
     const updateFilter = (key: string, value: object) => {
         setLocationFilter(prevFilter => ({
-            ...prevFilter, // Spread existing properties
-            [key]: value, // Override or add new property
+            ...prevFilter,
+            [key]: value,
         }));
     };
     const removeFilterProperty = (keyToRemove: string) => {
@@ -66,11 +51,7 @@ function App() {
                     <ChartFilter updateFilter={updateFilter} removeFilterProperty={removeFilterProperty}/>
                     <DateSelector updateDateFilter={updateDateFilter}/>
                 </Paper>
-                <Paper elevation={4} sx={{m: 1, p: 2}}>
-                    <SubscriptionManager deviceToken={token}/>
-                </Paper>
             </DataProvider>
-            <NotificationHandler/>
         </ThemeProvider>
     );
 }
